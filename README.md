@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ShoppingCartDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# angular-user-management-demo
+Angular 5 Simple Application
+>>>>>>> cce3d2a5b7c8f76cd26f9be8d7f0de56a17f2ed9
