@@ -4,6 +4,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomMaterialModule } from './material/material.module';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ImageUploadModule } from "angular2-image-upload";
+import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
 
 /* imports */
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +50,9 @@ import { InputErrorMsgComponent } from './components/input-error-msg/input-error
     FlexLayoutModule,
     FormsModule,
     CustomMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ImageUploadModule.forRoot(),
+    FancyImageUploaderModule
   ],
   providers: [MatchInputsValidation, UsersService],
   bootstrap: [AppComponent]

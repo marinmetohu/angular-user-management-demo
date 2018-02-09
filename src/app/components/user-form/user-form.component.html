@@ -3,32 +3,34 @@
 <form  novalidate (ngSubmit)="onSubmit(userForm)" [formGroup]="userForm">
 
     <div fxLayout="row"  >
-      <div  fxFlex="30" style="height: 80px">upload</div>
+      <div  fxFlex="50" fxFlex.xs="100" style="height: 80px">
+        <image-upload fxLayout="row" 
+            [max]="1"
+            [buttonCaption]="'Select Image!'"
+            [dropBoxMessage]="'or Drop your image here!'"
+            [class]="'customImageUpload'"
+            (removed)="onRemoved($event)"
+            (uploadFinished)="onUploadFinished($event)"
+            (uploadStateChanged)="onUploadStateChanged($event)"></image-upload>
+      </div>
 
-      <div fxFlex="70">
+      <div fxFlex="50" fxFlex.xs="100">
         <div fxLayout="column"  >
           <div formGroupName="name" fxLayout="column" >
 
-            <mat-form-field fxFlex="100%">
+            <mat-form-field fxFlex="100">
               <input matInput type="text" placeholder="Your first name" formControlName="first">
-              <app-input-error-msg [messages]="[{
-                active: (userForm.get('name').get('first').touched && userForm.get('name').get('first').hasError('required')),
-                text: 'Name is required'
-              }]" ></app-input-error-msg>
+              <app-input-error-msg [messages]="[
+                { text: 'Name is required', active: (userForm.get('name').get('first').touched && userForm.get('name').get('first').hasError('required')) }
+              ]" ></app-input-error-msg>
             </mat-form-field>
 
-            <mat-form-field fxFlex="100%">
+            <mat-form-field fxFlex="100">
                 <input matInput type="text" placeholder="Your last name" formControlName="last">
 
                 <app-input-error-msg [messages]="[
-                  {
-                    active: userForm.get('name').get('last').touched && userForm.get('name').get('last').hasError('required'),
-                    text: 'Last is required'
-                  },
-                  {
-                    active: userForm.get('name').get('last').touched && userForm.get('name').get('last').hasError('minlength'),
-                    text: 'Minimum of 2 characters'
-                  }
+                  { active: userForm.get('name').get('last').touched && userForm.get('name').get('last').hasError('required'), text: 'Last is required' },
+                  { active: userForm.get('name').get('last').touched && userForm.get('name').get('last').hasError('minlength'), text: 'Minimum of 2 characters' }
                 ]" ></app-input-error-msg> 
             </mat-form-field>
 
@@ -47,14 +49,14 @@
       </div>
     </div>
     <div fxLayout="column"  >
-      <mat-form-field fxFlex="100%">
+      <mat-form-field fxFlex="100">
           <textarea matInput 
                     type="text" 
                     placeholder="Description" 
                     formControlName="description"></textarea>
       </mat-form-field>
 
-      <div fxFlex="100%">
+      <div fxFlex="100">
           <button mat-raised-button color="warn" type="reset" (click)="onCancel()" >Cancel</button>
           <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Save</button>
       </div>
