@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
+  lazyHighlightOptions;
   constructor() { }
 
   ngOnInit() {
+    this.lazyHighlightOptions = {size: '4px'};
   }
 
 }

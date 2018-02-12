@@ -9,6 +9,9 @@ import {UsersService} from '../users/users.service';
   templateUrl: './user-new.component.html',
   styleUrls: ['./user-new.component.css']
 })
+
+ 
+
 export class UserNewComponent implements OnInit {
   userList;
   user;

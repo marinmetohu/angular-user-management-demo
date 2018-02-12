@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomMaterialModule } from './material/material.module';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ImageUploadModule } from "angular2-image-upload";
 import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
 
 /* imports */
@@ -28,6 +27,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { InputErrorMsgComponent } from './components/input-error-msg/input-error-msg.component';
+import { firstLetterUppercase } from './shared/first-letter-uppercase.pipe';
+import { HighlightMeDirective } from './shared/highlight-me.directive';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { InputErrorMsgComponent } from './components/input-error-msg/input-error
     TextareaComponent,
     UserFormComponent,
     SearchInputComponent,
-    InputErrorMsgComponent
+    InputErrorMsgComponent,
+    firstLetterUppercase,
+    HighlightMeDirective
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,6 @@ import { InputErrorMsgComponent } from './components/input-error-msg/input-error
     FormsModule,
     CustomMaterialModule,
     BrowserAnimationsModule,
-    ImageUploadModule.forRoot(),
     FancyImageUploaderModule
   ],
   providers: [MatchInputsValidation, UsersService],

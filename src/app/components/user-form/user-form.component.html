@@ -3,18 +3,14 @@
 <form  novalidate (ngSubmit)="onSubmit(userForm)" [formGroup]="userForm">
 
     <div fxLayout="row"  >
-      <div  fxFlex="50" fxFlex.xs="100" style="height: 80px">
-        <image-upload fxLayout="row" 
-            [max]="1"
-            [buttonCaption]="'Select Image!'"
-            [dropBoxMessage]="'or Drop your image here!'"
-            [class]="'customImageUpload'"
-            (removed)="onRemoved($event)"
-            (uploadFinished)="onUploadFinished($event)"
-            (uploadStateChanged)="onUploadStateChanged($event)"></image-upload>
+      <div  fxFlex="40" fxFlex.xs="100" style="height: 80px; margin-top:25px;">
+          <fancy-image-uploader 
+          (onUpload)="onUpload($event)"
+          [options]="uploadOptions" ></fancy-image-uploader>
+      
       </div>
 
-      <div fxFlex="50" fxFlex.xs="100">
+      <div fxFlex="60" fxFlex.xs="100">
         <div fxLayout="column"  >
           <div formGroupName="name" fxLayout="column" >
 
