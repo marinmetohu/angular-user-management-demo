@@ -17,7 +17,6 @@ import { UsersService } from './users/users.service';
 
 /* declarations */
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
@@ -33,7 +32,6 @@ import { HighlightMeDirective } from './shared/highlight-me.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     HomepageComponent,
     LoginComponent,
     UsersComponent,
