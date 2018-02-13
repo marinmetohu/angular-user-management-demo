@@ -1,35 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-import { assign, find } from 'lodash';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../interfaces';
+import { assign, find, forEach, pull } from 'lodash';
 
 @Injectable()
 export class UsersService {
-
-  constructor() { }
-  private messageSource = new BehaviorSubject<Array<any>>(
-    [{
-      "id" : "1234567890",
-      "name" : {
-          "first" : "John",
-          "last" : "Doe"
-      },
-      "email" : "john.doe@mail.tld",
-      "picture" : "/images/awesome-avatar.png",
-      "description" : "Unknown person"
-    },
-    {
-      "id" : "1234567891",
-      "name" : {
-          "first" : "Alpha",
-          "last" : "Beta"
-      },
-      "email" : "alpha.beta@mail.tld",
-      "picture" : "/images/awesome-avatar.png",
-      "description" : "Unknown person"
-    }
-  ]
-  );
+  configUrl = 'assets/users.json';
+  data : Array<User> = [];
+  private messageSource = new BehaviorSubject<Array<User>>(this.data);
   userList = this.messageSource.asObservable();
+  
+  constructor(private http: HttpClient) {
+    this.updateUsers();
+  }
 
+  loadUsers() {
+    return this.http.get(this.configUrl);
+  }
+ 
+  updateUsers(){
+    this.loadUsers().subscribe( data => { 
+ 
+      data.forEach(  (element) => {
+        this.data.push(element);
+      });
+    });
+  }
+
+  deleteUser(user){
+    pull(this.data, user)
+  }
 }

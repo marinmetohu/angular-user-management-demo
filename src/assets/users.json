@@ -1,0 +1,21 @@
+[{
+    "id" : "1234567890",
+    "name" : {
+        "first" : "John",
+        "last" : "Doe"
+    },
+    "email" : "john.doe@mail.tld",
+    "picture" : "/images/awesome-avatar.png",
+    "description" : "Unknown person"
+  },
+  {
+    "id" : "1234567891",
+    "name" : {
+        "first" : "Alpha",
+        "last" : "Beta"
+    },
+    "email" : "alpha.beta@mail.tld",
+    "picture" : "/images/awesome-avatar.png",
+    "description" : "Unknown person"
+  }
+]

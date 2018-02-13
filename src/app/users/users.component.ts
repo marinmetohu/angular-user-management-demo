@@ -15,14 +15,15 @@ export class UsersComponent implements OnInit {
   constructor(private Users: UsersService) { }
 
   ngOnInit() {
+
     this.Users.userList.subscribe(userList => this.userList = userList);
   }
 
   deleteUser(user): void {
-    pull(this.userList, user);
+    this.Users.deleteUser( user );
   }
 
   searchEvent($event){
-    console.log('event', $event);
+    /* search callback will be here */
   }
 }

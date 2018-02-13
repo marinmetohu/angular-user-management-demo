@@ -5,6 +5,7 @@ import { CustomMaterialModule } from './material/material.module';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
+import { HttpClientModule } from '@angular/common/http';
 
 /* imports */
 import { AppRoutingModule } from './app-routing.module';
@@ -52,7 +53,8 @@ import { HighlightMeDirective } from './shared/highlight-me.directive';
     FormsModule,
     CustomMaterialModule,
     BrowserAnimationsModule,
-    FancyImageUploaderModule
+    FancyImageUploaderModule,
+    HttpClientModule
   ],
   providers: [MatchInputsValidation, UsersService],
   bootstrap: [AppComponent]

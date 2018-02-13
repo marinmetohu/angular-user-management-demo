@@ -34,6 +34,7 @@ export class UserNewComponent implements OnInit {
 
   onSubmit($event) {
     this.userList.push( $event );
+    this.router.navigateByUrl('/users');
   }
   onCancel($event){
     this.router.navigateByUrl('/users');
