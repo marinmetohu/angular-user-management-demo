@@ -14,4 +14,5 @@ export interface User {
     email: string;
     picture?: string;
     description: string;
+    display?: boolean;
 }

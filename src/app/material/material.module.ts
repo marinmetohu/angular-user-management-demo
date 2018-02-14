@@ -6,7 +6,8 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatRadioModule
 } from '@angular/material';
 
 import {PlatformModule} from '@angular/cdk/platform';
@@ -14,6 +15,7 @@ import {ObserversModule} from '@angular/cdk/observers';
 
 @NgModule({
   exports: [
+    MatRadioModule,
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,

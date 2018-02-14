@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces';
-import { assign, find, forEach, pull } from 'lodash';
+import { assign, find, forEach, pull, map } from 'lodash';
 
 @Injectable()
 export class UsersService {
@@ -20,10 +20,9 @@ export class UsersService {
   }
  
   updateUsers(){
-    this.loadUsers().subscribe( data => { 
- 
-      data.forEach(  (element) => {
-        this.data.push(element);
+    this.loadUsers().subscribe( resp => {
+      resp.forEach(  (element) => {
+        this.data.push( assign(element, {display: true} );
       });
     });
   }

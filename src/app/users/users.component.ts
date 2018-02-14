@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from './users.service';
 
-import { pull } from 'lodash';
+import { pull, map, find, each } from 'lodash';
 
 @Component({
   selector: 'app-users',
@@ -12,11 +12,15 @@ import { pull } from 'lodash';
 
 export class UsersComponent implements OnInit {
   userList;
+  usersListDisplay;
+
   constructor(private Users: UsersService) { }
 
   ngOnInit() {
 
-    this.Users.userList.subscribe(userList => this.userList = userList);
+    this.Users.userList.subscribe(userList => {
+      this.userList = userList;
+    });
   }
 
   deleteUser(user): void {
@@ -24,6 +28,12 @@ export class UsersComponent implements OnInit {
   }
 
   searchEvent($event){
-    /* search callback will be here */
+ 
+    console.log('asdf', $event);
+    each( this.userList, (el) => { 
+      const obj = find($event, el);
+      el.display = (!!obj) ? true : false; 
+    });
   }
+
 }

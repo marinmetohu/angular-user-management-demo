@@ -11,9 +11,12 @@ import { forEach } from 'lodash';
 export class SearchInputComponent implements OnInit {
   newUserList: Array<User>;
   searchForm: FormGroup;
+  searchTypes: Array<string> = ['both', 'first only', 'last only'];
+  searchType: string;
+
   @Input() userList;
   @Input() customPlaceholder = 'Search';
-  @Output() submitEvent = new EventEmitter();
+  @Output() searchUsers = new EventEmitter<Array<User>>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -21,15 +24,27 @@ export class SearchInputComponent implements OnInit {
     this.searchForm = this.fb.group({
       searchString: ['', [Validators.required, Validators.email, Validators.maxLength(50) ]]
     });
+    this.searchType = this.searchTypes[0];
   }
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
 
-    let matchArray = [];
+    const matchArray = [];
     forEach(this.userList, (user) => {
-        let matchstr = new RegExp(value.searchString);
-        if(matchstr.test(user.name.first.toLowerCase())) matchArray.push(user);
+        const matchstr = new RegExp(value.searchString.toLowerCase());
+        const firstname = user.name.first.toLowerCase();
+        const lastname = user.name.last.toLowerCase();
+ 
+        if ( this.searchType == this.searchTypes[1] ) {
+          if (matchstr.test(firstname)) matchArray.push(user);
+        }
+        else if ( this.searchType == this.searchTypes[2]) {
+          if ( matchstr.test(lastname) ) matchArray.push(user);
+        }
+        else {
+          if ( matchstr.test(firstname) || matchstr.test(lastname) ) matchArray.push(user);
+        }
     });
-
-    this.submitEvent.emit(matchArray);
+   
+    this.searchUsers.emit(matchArray);
   }
 }
