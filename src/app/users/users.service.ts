@@ -22,7 +22,7 @@ export class UsersService {
   updateUsers(){
     this.loadUsers().subscribe( resp => {
       resp.forEach(  (element) => {
-        this.data.push( assign(element, {display: true} );
+        this.data.push( assign(element, {display: true} ) );
       });
     });
   }
