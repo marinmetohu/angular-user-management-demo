@@ -7,7 +7,7 @@ import { assign, find, forEach, pull, map } from 'lodash';
 @Injectable()
 export class UsersService {
   configUrl = 'assets/users.json';
-  data : Array<User> = [];
+  data  = [];
   private messageSource = new BehaviorSubject<Array<User>>(this.data);
   userList = this.messageSource.asObservable();
   
@@ -21,8 +21,8 @@ export class UsersService {
  
   updateUsers(){
     this.loadUsers().subscribe( resp => {
-      resp.forEach(  (element) => {
-        this.data.push( assign(element, {display: true} ) );
+      forEach( resp,  element => {
+        this.data.push( assign(element, {display: true}) );
       });
     });
   }
