@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
-import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 /* providers */
 import { MatchInputsValidation } from './shared/matchPassword';
@@ -56,7 +56,7 @@ import { HighlightMeDirective } from './shared/highlight-me.directive';
     BrowserAnimationsModule,
     FancyImageUploaderModule,
     HttpClientModule,
-    LazyLoadImagesModule
+    LazyLoadImageModule
   ],
   providers: [MatchInputsValidation, UsersService],
   bootstrap: [AppComponent]
