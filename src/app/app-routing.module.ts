@@ -10,11 +10,11 @@ import { UserNewComponent } from './user-new/user-new.component';
 import { SignupModule } from './signup/signup.module';
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'user-new', component: UserNewComponent },
-  { path: 'user-details/:id', component: UserDetailsComponent },
-  { path: 'lazy', loadChildren: './signup/signup.module#SignupModule' },
+  { path: 'home', component: HomepageComponent,  data: { state: 'home'} },
+  { path: 'users', component: UsersComponent, data: { state: 'users'} },
+  { path: 'user-new', component: UserNewComponent, data: { state: 'new-user'} },
+  { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'user-details'} },
+  { path: 'lazy', loadChildren: './signup/signup.module#SignupModule', data: { state: 'users'}  },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from './users.service';
 
 import { pull, map, find, each } from 'lodash';
+import { trigger, state, animate, transition, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-users',

@@ -20,9 +20,9 @@
         </div>
       </nav>
     </div>
-    <div fxFlex="80">
+    <div fxFlex="80" [@routerTransition]="getState(o)">
       
-      <router-outlet></router-outlet>
+      <router-outlet #o="outlet"></router-outlet>
     </div>
   </div>
 </div>
