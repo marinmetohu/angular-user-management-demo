@@ -4,7 +4,7 @@ import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
-import { CustomMaterialModule } from '../material/material.module';
+import { CustomMaterialModule } from '../shared/material.module';
 
 @NgModule({
   imports: [

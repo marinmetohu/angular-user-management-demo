@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CustomMaterialModule } from './material/material.module';
+import { CustomMaterialModule } from './shared/material.module';
 import 'hammerjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FancyImageUploaderModule } from 'ng2-fancy-image-uploader';
