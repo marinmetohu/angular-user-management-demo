@@ -2,8 +2,7 @@ import {trigger, animate, style, group, query, transition} from '@angular/animat
 
 export const routerTransition = trigger('routerTransition', [
   transition('* => *', [
-    query(':enter, :leave', style({ position: 'fixed'   })
-      , { optional: true }),
+    query(':enter, :leave', style({ position: 'fixed' }), { optional: true }),
     group([
       query(':enter', [
         style({ transform: 'translateY(-100%)' }),
@@ -11,9 +10,10 @@ export const routerTransition = trigger('routerTransition', [
       ], { optional: true }),
       query(':leave', [
         style({ transform: 'scale(1)', opacity: '.5' }),
-        animate('0.4s ease-in-out', style({ transform: 'scale(0)' }
+        animate('0.4s ease-in-out', style({ transform: 'scale(0)' }))
       ], { optional: true })
     ])
-  ]) 
-]);
+  ])
+]); 
+
 

@@ -11,7 +11,7 @@
   
   <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 20px;"  >
 
-      <div  *ngFor='let user of userList' >
+      <div  *ngFor='let user of usersListDisplay' >
         <mat-card *ngIf="!!user.display">
           <mat-card-header fxFlex="70">
               <div mat-card-avatar class="example-header-image"  >
@@ -32,8 +32,17 @@
             </div>            
           </mat-card-actions>
         </mat-card>
-      </div>  
-      
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 20px;"  >
+        <mat-form-field fxFlex="">
+            Custom Items/Page
+            <input matInput [(ngModel)]="pageSize" (keyup)="updateUsersListDisplay()">
+          </mat-form-field>  
+        <mat-paginator [length]="userList.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="onPaginationChange($event)"></mat-paginator>
+      </div>
   </div>
   
 </div>

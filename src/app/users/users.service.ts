@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces';
-import { assign, find, forEach, pull, map } from 'lodash';
+import { assign, find, forEach, pull, map, values } from 'lodash';
 
 @Injectable()
 export class UsersService {
-  configUrl = 'assets/users.json';
-  data  = [];
+  private configUrl = 'assets/users.json';
+  private data = [];
   private messageSource = new BehaviorSubject<Array<User>>(this.data);
   userList = this.messageSource.asObservable();
   
@@ -16,18 +17,19 @@ export class UsersService {
   }
 
   loadUsers() {
-    return this.http.get(this.configUrl);
+    return this.http.get(this.configUrl).map( resp => resp["users"] );
   }
  
   updateUsers(){
     this.loadUsers().subscribe( resp => {
-      forEach( resp,  element => {
-        this.data.push( assign(element, {display: true}) );
-      });
+
+      this.data = map(resp, user => assign(user, {display: true}) );
+      this.messageSource.next( this.data  );
     });
   }
 
   deleteUser(user){
-    pull(this.data, user)
+    pull(this.data, user);
+    this.messageSource.next( this.data );
   }
 }

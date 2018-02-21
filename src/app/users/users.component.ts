@@ -3,7 +3,7 @@ import {UsersService} from './users.service';
 
 import { pull, map, find, each } from 'lodash';
 import { trigger, state, animate, transition, style } from '@angular/animations';
-
+import {PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -16,26 +16,41 @@ export class UsersComponent implements OnInit {
   userList;
   usersListDisplay;
 
-  constructor(private Users: UsersService) { }
+  // MatPaginator Inputs
+  length: number;
+  pageSize: number = 5;
+  pageSizeOptions: Array<number> = [3, 5, 10, 25];
+
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
 
-    this.Users.userList.subscribe(userList => {
+    this.usersService.userList.subscribe(userList => {
       this.userList = userList;
+      this.length = this.userList.length;
+      this.updateUsersListDisplay();
     });
   }
 
   deleteUser(user): void {
-    this.Users.deleteUser( user );
+    this.usersService.deleteUser( user );
   }
 
-  searchEvent($event){
- 
-    console.log('asdf', $event);
-    each( this.userList, (el) => { 
-      const obj = find($event, el);
-      el.display = (!!obj) ? true : false; 
+  searchEvent($searchArray): void {
+    each( this.userList, (el) => {
+      //set display to true/false depending on find() result
+      el.display = find($searchArray, el);
     });
   }
 
+  updateUsersListDisplay(pageIndex=0 ): void {
+    //define how many users to show
+    const step = pageIndex * this.pageSize;
+    this.usersListDisplay = this.userList.slice( step, step + this.pageSize );
+  }
+
+  onPaginationChange(pageEvent: PageEvent): void {
+      this.pageSize =  pageEvent.pageSize;
+      this.updateUsersListDisplay(pageEvent.pageIndex);
+  }
 }
