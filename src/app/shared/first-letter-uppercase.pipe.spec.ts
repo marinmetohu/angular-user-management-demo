@@ -1,8 +1,8 @@
-import { HighlightMePipe } from './highlight-me.pipe';
+import { firstLetterUppercase } from './first-letter-uppercase.pipe';
 
-describe('HighlightMePipe', () => {
+describe('firstLetterUppercase', () => {
   it('create an instance', () => {
-    const pipe = new HighlightMePipe();
+    const pipe = new firstLetterUppercase();
     expect(pipe).toBeTruthy();
   });
 });

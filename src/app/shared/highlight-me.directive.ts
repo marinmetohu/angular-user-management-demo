@@ -1,15 +1,19 @@
 import { Directive, ElementRef, Input, OnInit  } from '@angular/core';
 import {assign} from 'lodash';
+import {HighlightMeOption} from '../interfaces';
+
+
+
 @Directive({
   selector: '[appHighlightMe]'
 })
 export class HighlightMeDirective implements OnInit {
-  defaultOptions = {
+  defaultOptions: HighlightMeOption = {
     size: '2px',
     color: 'yellow',
     type: 'solid'
   };
-  @Input('appHighlightMe') options: any;
+  @Input('appHighlightMe') options: HighlightMeOption;
  
   constructor(private el: ElementRef) { }
 

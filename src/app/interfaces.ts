@@ -16,3 +16,9 @@ export interface User {
     description: string;
     display?: boolean;
 }
+
+export interface HighlightMeOption {
+    size?: string;
+    color?: string;
+    type?: string;
+}

@@ -1,8 +1,10 @@
 import { HighlightMeDirective } from './highlight-me.directive';
+import {TestBed} from '@angular/core/testing';
 
 describe('HighlightMeDirective', () => {
-  it('should create an instance', () => {
-    const directive = new HighlightMeDirective();
-    expect(directive).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [HighlightMeDirective]
+    });
   });
 });
