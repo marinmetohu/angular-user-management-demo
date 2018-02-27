@@ -8,7 +8,8 @@ import {
   MatCardModule,
   MatIconModule,
   MatRadioModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDialogModule
 } from '@angular/material';
 
 import {PlatformModule} from '@angular/cdk/platform';
@@ -16,6 +17,7 @@ import {ObserversModule} from '@angular/cdk/observers';
 
 @NgModule({
   exports: [
+    MatDialogModule,
     MatPaginatorModule,
     MatRadioModule,
     MatIconModule,
@@ -26,6 +28,7 @@ import {ObserversModule} from '@angular/cdk/observers';
     MatRippleModule,
     ObserversModule,
     PlatformModule
-  ]
+  ],
+  declarations: []
 })
 export class CustomMaterialModule { }

@@ -9,12 +9,16 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserNewComponent } from './user-new/user-new.component';
 import { SignupModule } from './signup/signup.module';
 
+import { AppAuthGuardService } from './app-auth-guard.service';
+
 const routes: Routes = [
   { path: 'home', component: HomepageComponent,  data: { state: 'home'} },
+  { path: 'login', component: LoginComponent,  data: { state: 'login'} },
   { path: 'users', component: UsersComponent, data: { state: 'users'} },
   { path: 'user-new', component: UserNewComponent, data: { state: 'new-user'} },
   { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'user-details'} },
   { path: 'lazy', loadChildren: './signup/signup.module#SignupModule', data: { state: 'users'}  },
+  { path: 'secret', component: HomepageComponent, canActivate: [AppAuthGuardService], data: { state: 'secret'}  },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

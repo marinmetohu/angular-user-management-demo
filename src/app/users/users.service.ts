@@ -11,7 +11,7 @@ export class UsersService {
   private data = [];
   private messageSource = new BehaviorSubject<Array<User>>(this.data);
   userList = this.messageSource.asObservable();
-  
+
   constructor(private http: HttpClient) {
     this.updateUsers();
   }
@@ -19,7 +19,7 @@ export class UsersService {
   loadUsers() {
     return this.http.get(this.configUrl).map( resp => resp["users"] );
   }
- 
+
   updateUsers(){
     this.loadUsers().subscribe( resp => {
 

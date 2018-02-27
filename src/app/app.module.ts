@@ -10,12 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 /* imports */
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 /* providers */
 import { MatchInputsValidation } from './shared/matchPassword';
 import { UsersService } from './users/users.service';
+import { AppAuthGuardService } from './app-auth-guard.service';
 
 /* declarations */
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { InputErrorMsgComponent } from './components/input-error-msg/input-error-msg.component';
 import { firstLetterUppercase } from './shared/first-letter-uppercase.pipe';
 import { HighlightMeDirective } from './shared/highlight-me.directive';
+import { LoginFormDialogComponent } from './components/login-form-dialog/login-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { HighlightMeDirective } from './shared/highlight-me.directive';
     SearchInputComponent,
     InputErrorMsgComponent,
     firstLetterUppercase,
-    HighlightMeDirective
+    HighlightMeDirective,
+    LoginFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { HighlightMeDirective } from './shared/highlight-me.directive';
     HttpClientModule,
     LazyLoadImageModule
   ],
-  providers: [MatchInputsValidation, UsersService],
-  bootstrap: [AppComponent]
+  providers: [MatchInputsValidation, UsersService, AppAuthGuardService],
+  bootstrap: [AppComponent],
+  entryComponents: [LoginFormDialogComponent]
 })
 export class AppModule { }

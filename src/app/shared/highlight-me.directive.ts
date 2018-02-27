@@ -14,11 +14,11 @@ export class HighlightMeDirective implements OnInit {
     type: 'solid'
   };
   @Input('appHighlightMe') options: HighlightMeOption;
- 
+
   constructor(private el: ElementRef) { }
 
-  ngOnInit(){
-    if(!!this.options) assign(this.defaultOptions, this.options);
+  ngOnInit() {
+    if( !!this.options ) assign( this.defaultOptions, this.options );
     this.el.nativeElement.style.borderBottom = this.defaultOptions.size + ' ' + this.defaultOptions.type + ' ' + this.defaultOptions.color;
   }
 }
