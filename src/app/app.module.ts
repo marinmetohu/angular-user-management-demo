@@ -17,6 +17,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatchInputsValidation } from './shared/matchPassword';
 import { UsersService } from './users/users.service';
 import { AppAuthGuardService } from './app-auth-guard.service';
+import { AuthenticateService } from './shared/authenticate.service';
 
 /* declarations */
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { InputErrorMsgComponent } from './components/input-error-msg/input-error
 import { firstLetterUppercase } from './shared/first-letter-uppercase.pipe';
 import { HighlightMeDirective } from './shared/highlight-me.directive';
 import { LoginFormDialogComponent } from './components/login-form-dialog/login-form-dialog.component';
+import { RestrictedAreaComponent } from './restricted-area/restricted-area.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { LoginFormDialogComponent } from './components/login-form-dialog/login-f
     InputErrorMsgComponent,
     firstLetterUppercase,
     HighlightMeDirective,
-    LoginFormDialogComponent
+    LoginFormDialogComponent,
+    RestrictedAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,12 @@ import { LoginFormDialogComponent } from './components/login-form-dialog/login-f
     HttpClientModule,
     LazyLoadImageModule
   ],
-  providers: [MatchInputsValidation, UsersService, AppAuthGuardService],
+  providers: [
+    MatchInputsValidation,
+    UsersService,
+    AppAuthGuardService,
+    AuthenticateService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormDialogComponent]
 })

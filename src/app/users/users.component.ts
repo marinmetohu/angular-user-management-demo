@@ -18,13 +18,13 @@ export class UsersComponent implements OnInit {
 
   // MatPaginator Inputs
   length: number;
-  pageSize: number = 5;
+  pageSize: number;
   pageSizeOptions: Array<number> = [3, 5, 10, 25];
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-
+    this.pageSize = 5;
     this.usersService.userList.subscribe(userList => {
       this.userList = userList;
       this.length = this.userList.length;
@@ -38,13 +38,13 @@ export class UsersComponent implements OnInit {
 
   searchEvent($searchArray): void {
     each( this.userList, (el) => {
-      //set display to true/false depending on find() result
+      /** set display to true/false depending on find() result */
       el.display = find($searchArray, el);
     });
   }
 
-  updateUsersListDisplay(pageIndex=0 ): void {
-    //define how many users to show
+  updateUsersListDisplay(pageIndex = 0 ): void {
+    /** define how many users to show */
     const step = pageIndex * this.pageSize;
     this.usersListDisplay = this.userList.slice( step, step + this.pageSize );
   }

@@ -16,7 +16,7 @@ import { User } from '../interfaces';
 export class UserDetailsComponent implements OnInit {
   userList;
   user: User;
-  //private user;
+
   constructor(private route: ActivatedRoute,
               private Users: UsersService,
               private router: Router) { }
@@ -25,18 +25,18 @@ export class UserDetailsComponent implements OnInit {
     this.Users.userList.subscribe(userList => this.userList = userList);
 
     this.route.paramMap.subscribe(params => {
-      
+
       this.user = cloneDeep(   find(this.userList, ['id', params.get('id') ]  ) );
     });
   }
 
   onSubmit($event): void {
 
-    assign( find(this.userList, ['id', $event.id ] ), $event); 
+    assign( find(this.userList, ['id', $event.id ] ), $event);
     this.router.navigateByUrl('/users');
   }
 
-  onCancel($event){
+  onCancel($event) {
     this.router.navigateByUrl('/users');
   }
 

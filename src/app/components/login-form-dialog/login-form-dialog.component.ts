@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
+import { AuthenticateService } from '../../shared/authenticate.service';
+
 @Component({
   selector: 'app-login-form-dialog',
   templateUrl: './login-form-dialog.component.html',
@@ -11,7 +13,8 @@ export class LoginFormDialogComponent implements OnInit {
   isAuthenticated: boolean;
 
   constructor(
-    public dialogRef: MatDialogRef<any>
+    public dialogRef: MatDialogRef<any>,
+    private auth: AuthenticateService
   ) { }
 
   checkAuth(): boolean {
@@ -19,11 +22,13 @@ export class LoginFormDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close(false);
+    this.dialogRef.close(null);
   }
 
   checkCredentials(): void {
-    this.dialogRef.close( this.checkAuth() );
+    const isValidUser = this.checkAuth();
+    this.dialogRef.close( isValidUser );
+    this.auth.setLoggedIn( isValidUser );
   }
 
   ngOnInit() {

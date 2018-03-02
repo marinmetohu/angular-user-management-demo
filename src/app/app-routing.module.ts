@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserNewComponent } from './user-new/user-new.component';
+import { RestrictedAreaComponent } from './restricted-area/restricted-area.component';
+
 import { SignupModule } from './signup/signup.module';
 
 import { AppAuthGuardService } from './app-auth-guard.service';
@@ -17,8 +19,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent, data: { state: 'users'} },
   { path: 'user-new', component: UserNewComponent, data: { state: 'new-user'} },
   { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'user-details'} },
-  { path: 'lazy', loadChildren: './signup/signup.module#SignupModule', data: { state: 'users'}  },
-  { path: 'secret', component: HomepageComponent, canActivate: [AppAuthGuardService], data: { state: 'secret'}  },
+  { path: 'lazy', loadChildren: './signup/signup.module#SignupModule', data: { state: 'lazy'}  },
+  { path: 'restricted', component: RestrictedAreaComponent, canActivate: [AppAuthGuardService], data: { state: 'restricted'}  },
   { path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
