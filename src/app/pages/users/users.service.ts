@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../interfaces';
+import { User } from '../../interfaces';
 import { assign, find, forEach, pull, map, values } from 'lodash';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class UsersService {
     return this.http.get(this.configUrl).map( resp => resp["users"] );
   }
 
-  updateUsers(){
+  updateUsers() {
     this.loadUsers().subscribe( resp => {
 
       this.data = map(resp, user => assign(user, {display: true}) );
@@ -28,7 +28,7 @@ export class UsersService {
     });
   }
 
-  deleteUser(user){
+  deleteUser(user) {
     pull(this.data, user);
     this.messageSource.next( this.data );
   }

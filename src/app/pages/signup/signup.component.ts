@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { User } from './signup.interface';
-import { MatchInputsValidation } from '../shared/matchPassword';
+import { MatchInputsValidation } from '../../shared/matchPassword';
 
 @Component({
   selector: 'app-signup',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../interfaces';
+import { User } from '../../interfaces';
 import {assign, uniqueId} from 'lodash';
 import {Router} from '@angular/router';
 import {UsersService} from '../users/users.service';
@@ -9,8 +9,6 @@ import {UsersService} from '../users/users.service';
   templateUrl: './user-new.component.html',
   styleUrls: ['./user-new.component.css']
 })
-
- 
 
 export class UserNewComponent implements OnInit {
   userList;
@@ -36,7 +34,7 @@ export class UserNewComponent implements OnInit {
     this.userList.push( $event );
     this.router.navigateByUrl('/users');
   }
-  onCancel($event){
+  onCancel($event) {
     this.router.navigateByUrl('/users');
   }
 }

@@ -15,17 +15,17 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 /* providers */
 import { MatchInputsValidation } from './shared/matchPassword';
-import { UsersService } from './users/users.service';
+import { UsersService } from './pages/users/users.service';
 import { AppAuthGuardService } from './app-auth-guard.service';
 import { AuthenticateService } from './shared/authenticate.service';
 
 /* declarations */
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
-import { UsersComponent } from './users/users.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-import { UserNewComponent } from './user-new/user-new.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { LoginComponent } from './pages/login/login.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserNewComponent } from './pages/user-new/user-new.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
@@ -33,7 +33,7 @@ import { InputErrorMsgComponent } from './components/input-error-msg/input-error
 import { firstLetterUppercase } from './shared/first-letter-uppercase.pipe';
 import { HighlightMeDirective } from './shared/highlight-me.directive';
 import { LoginFormDialogComponent } from './components/login-form-dialog/login-form-dialog.component';
-import { RestrictedAreaComponent } from './restricted-area/restricted-area.component';
+import { RestrictedAreaComponent } from './pages/restricted-area/restricted-area.component';
 
 @NgModule({
   declarations: [

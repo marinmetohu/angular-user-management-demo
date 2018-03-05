@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 
 import { assign, cloneDeep, find } from 'lodash';
 
-import { User } from '../interfaces';
+import { User } from '../../interfaces';
 
 @Component({
   selector: 'app-user-details',
