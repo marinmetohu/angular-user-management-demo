@@ -17,17 +17,20 @@ export class AppAuthGuardService implements CanActivate {
             ) { }
 
   openDialog(): void {
-    console.log('open');
+
     this.dialogTriggered = true;
     const dialogRef = this.dialog.open(LoginFormDialogComponent, {
       width: '450px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if(result == null){
+
+      if(result === null){
         this.dialogTriggered = null;
         this.dialog.closeAll();
+        this.auth.setLoggedIn( false );
+        console.log('this.router');
+        //this.router.navigateByUrl(this.router.url);
       }
     });
 
@@ -35,18 +38,35 @@ export class AppAuthGuardService implements CanActivate {
   canActivate(): Observable<boolean> {
     const self = this;
 
+    /** if it has been previously set to Null=>('No Thanks' was clicked), then reset it to false */
+    if(self.dialogTriggered === null) self.dialogTriggered = false;
+
     return Observable.create(function (observer) {
-      self.auth.isLogged.subscribe(value => {
-        console.log('value', value);
-        if(!value && self.dialogTriggered === false){
+      self.auth.isLogged.subscribe(isLogged => {
+        /**
+         * if not loggedin and login dialog not shown yet
+        */
+        if(!isLogged && self.dialogTriggered === false){
           self.openDialog();
         }
-        else if(!value && !!self.dialogTriggered){
+        /** if loggedin let it pass */
+        else if(!!isLogged){
+          observer.next(true);
+        }
+        /** if not loggedin and login dialog already shown,
+         * means he entered wrong password so ask him again
+        */
+        else if(!isLogged && !!self.dialogTriggered) {
           self.dialog.closeAll();
           self.openDialog();
         }
-        else if(!!value && self.dialogTriggered !== null){
-          observer.next(true);
+        /** if not loggedin and clicked 'No Thanks' on the dialog box */
+        else if(!isLogged && self.dialogTriggered === null){
+
+          observer.next(false);
+        }
+        else{
+          observer.next(false);
         }
       });
     });
