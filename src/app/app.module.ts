@@ -34,6 +34,7 @@ import { firstLetterUppercase } from './shared/first-letter-uppercase.pipe';
 import { HighlightMeDirective } from './shared/highlight-me.directive';
 import { LoginFormDialogComponent } from './components/login-form-dialog/login-form-dialog.component';
 import { RestrictedAreaComponent } from './pages/restricted-area/restricted-area.component';
+import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RestrictedAreaComponent } from './pages/restricted-area/restricted-area
     firstLetterUppercase,
     HighlightMeDirective,
     LoginFormDialogComponent,
-    RestrictedAreaComponent
+    RestrictedAreaComponent,
+    MainmenuComponent
   ],
   imports: [
     BrowserModule,

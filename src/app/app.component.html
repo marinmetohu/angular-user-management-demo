@@ -1,31 +1,26 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div class="row-example" id="container">
-  <div fxLayout="row">
-    <h1>Welcome to {{ title }}!</h1>
-  </div>
-  <div fxLayout="row" 
-       fxLayoutAlign="center center">
-    <div fxFlexAlign="left"  fxFlex="20">
-      <nav fxLayout="column" 
-          fxLayoutGap="10px">
-        <div fxFlex="100">
-            <button mat-raised-button routerLink="/home" routerLinkActive="mat-primary" [routerLinkActiveOptions]="{exact: true}">Home</button>
+ 
+
+  <mat-sidenav-container  id="container" >
+    <mat-sidenav #sidenav [mode]="'over'">
+        <app-mainmenu [menuArray]="menuArray"></app-mainmenu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div fxLayout="row">
+          <button fxHide fxShow.xs mat-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
+        <h1>Welcome to {{ title }}!</h1>
+      </div>
+      <div fxLayout="row" 
+          fxLayoutAlign="center center">
+        <div fxFlexAlign="left"  fxFlex="20" fxShow fxHide.xs >
+          <app-mainmenu [menuArray]="menuArray" [navFlex]="navFlex"></app-mainmenu>
         </div>
-        <div fxFlex="100">
-            <button mat-raised-button routerLink="/users" routerLinkActive="mat-primary">Users</button>
+        <div fxFlex="80" [@routerTransition]="getState(o)">
+          
+          <router-outlet #o="outlet"></router-outlet>
         </div>
-        <div fxFlex="100">
-            <button mat-raised-button routerLink="/lazy" routerLinkActive="mat-primary">Sign Up</button>
-        </div>
-        <div fxFlex="100">
-            <button mat-raised-button routerLink="/restricted" routerLinkActive="mat-primary">Restricted Area</button>
-        </div>
-      </nav>
-    </div>
-    <div fxFlex="80" [@routerTransition]="getState(o)">
-      
-      <router-outlet #o="outlet"></router-outlet>
-    </div>
-  </div>
-</div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+ 

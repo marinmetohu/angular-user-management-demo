@@ -9,7 +9,9 @@ import {
   MatIconModule,
   MatRadioModule,
   MatPaginatorModule,
-  MatDialogModule
+  MatDialogModule,
+  MatToolbarModule,
+  MatSidenavModule
 } from '@angular/material';
 
 import {PlatformModule} from '@angular/cdk/platform';
@@ -17,6 +19,8 @@ import {ObserversModule} from '@angular/cdk/observers';
 
 @NgModule({
   exports: [
+    MatSidenavModule,
+    MatToolbarModule,
     MatDialogModule,
     MatPaginatorModule,
     MatRadioModule,
