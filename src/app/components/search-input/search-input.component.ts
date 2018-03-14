@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChange, Input, Output, EventEmitter, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit, SimpleChange, Input, Output, EventEmitter, AfterContentInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../interfaces';
 import { forEach } from 'lodash';
@@ -6,12 +6,16 @@ import { fromEvent } from 'rxjs/observable/fromEvent';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css']
 })
 export class SearchInputComponent implements OnInit, AfterContentInit {
+  
+  @ViewChild('searchInput') el;
+
   newUserList: Array<User>;
   searchForm: FormGroup;
   searchTypes: Array<string> = ['both', 'first only', 'last only'];
@@ -21,20 +25,18 @@ export class SearchInputComponent implements OnInit, AfterContentInit {
   @Input() customPlaceholder = 'Search';
   @Output() searchUsers = new EventEmitter<Array<User>>();
 
-  constructor(private fb: FormBuilder, private elementRef: ElementRef) { }
+  constructor(private fb: FormBuilder ) { }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      searchString: ['', [Validators.required, Validators.email, Validators.maxLength(50) ]]
+      searchString: ['', [Validators.maxLength(100) ]]
     });
     this.searchType = this.searchTypes[0];
-
-    
   }
 
   ngAfterContentInit() {
-    /** using RxJs to handle keyboard events on input field */ 
-    const searchBox = <HTMLInputElement>this.elementRef.nativeElement.querySelector('input.mat-input-element');
+    /** using RxJs to handle keyboard events on input field */
+    const searchBox = <HTMLInputElement>this.el.nativeElement;
 
     const typeahead = fromEvent(searchBox, 'input').pipe(
       map((e: KeyboardEvent) => {

@@ -2,7 +2,7 @@
 
 <form  novalidate  [formGroup]="searchForm">
       <mat-form-field >
-        <input  matInput type="text" placeholder="Search" formControlName="searchString">
+        <input #searchInput matInput type="text" placeholder="Search" formControlName="searchString">
       </mat-form-field>
       <span><mat-icon>search</mat-icon></span>
 </form>
