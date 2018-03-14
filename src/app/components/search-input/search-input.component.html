@@ -1,10 +1,10 @@
 
 
-<form  novalidate (ngSubmit)="onSubmit(searchForm)" [formGroup]="searchForm">
+<form  novalidate  [formGroup]="searchForm">
       <mat-form-field >
-        <input (keyup)="onSubmit(searchForm)" matInput type="text" placeholder="Search" formControlName="searchString">
+        <input  matInput type="text" placeholder="Search" formControlName="searchString">
       </mat-form-field>
-      <button mat-button type="submit"><mat-icon>search</mat-icon></button>
+      <span><mat-icon>search</mat-icon></span>
 </form>
 
 <mat-radio-group fxLayout="row" fxLayoutGap="10px"  [(ngModel)]="searchType">

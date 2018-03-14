@@ -1,14 +1,17 @@
-import { Component, OnInit, SimpleChange, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, SimpleChange, Input, Output, EventEmitter, ElementRef, AfterContentInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../interfaces';
 import { forEach } from 'lodash';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { ajax } from 'rxjs/observable/dom/ajax';
+import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css']
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit, AfterContentInit {
   newUserList: Array<User>;
   searchForm: FormGroup;
   searchTypes: Array<string> = ['both', 'first only', 'last only'];
@@ -18,19 +21,41 @@ export class SearchInputComponent implements OnInit {
   @Input() customPlaceholder = 'Search';
   @Output() searchUsers = new EventEmitter<Array<User>>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.searchForm = this.fb.group({
       searchString: ['', [Validators.required, Validators.email, Validators.maxLength(50) ]]
     });
     this.searchType = this.searchTypes[0];
+
+    
   }
-  onSubmit({ value, valid }: { value: any, valid: boolean }) {
+
+  ngAfterContentInit() {
+    /** using RxJs to handle keyboard events on input field */ 
+    const searchBox = <HTMLInputElement>this.elementRef.nativeElement.querySelector('input.mat-input-element');
+
+    const typeahead = fromEvent(searchBox, 'input').pipe(
+      map((e: KeyboardEvent) => {
+        /** need to declare expliticy as HTMLInputElement, otherwise e.target.event will through an error  */
+        const input = e.target as HTMLInputElement;
+        if(input) return input.value;
+      }),
+      debounceTime(20),
+      distinctUntilChanged()
+    );
+
+    typeahead.subscribe(data => {
+      this.filterResults(data);
+    });
+  }
+
+  filterResults( value: string) {
 
     const matchArray = [];
     forEach(this.userList, (user) => {
-        const matchstr = new RegExp(value.searchString.toLowerCase());
+        const matchstr = new RegExp(value.toLowerCase());
         const firstname = user.name.first.toLowerCase();
         const lastname = user.name.last.toLowerCase();
  
