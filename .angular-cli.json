@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "shopping-cart-demo"
+    "name": "angular-user-management-demo"
   },
   "apps": [
     {
